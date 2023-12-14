@@ -1,0 +1,24 @@
+{
+  "exp_dir": "pixel_classifiers/ffhq_34/ddpm",
+  "model_type": "ddpm",
+  
+  "category": "ffhq_34",
+
+  "model_path": "checkpoints/ddpm/ffhq.pt",
+
+  "dim": [256, 256, 2816],
+  "steps": [50],
+  "blocks": [5, 6, 7, 8, 12],
+
+  "model_num": 10,
+  "batch_size": 96,
+  "max_training": 30,
+
+  "down_sample_mode":"bilinear",
+  "share_noise": true,
+  "input_activations": false,
+  "print_freq": 100,
+  "result_path": ".results/",
+  "eval_preq": 1,
+  "muti_gpus": false
+}
