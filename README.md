@@ -31,4 +31,7 @@ If you want to test the effect of baseline, please execute:
 ```shell
 cd face_anti_spoofing
 ```
-Then, add the CDCN_test_Best(epoch=20).pt, CMFL_test_Best(epoch=11).pt and depthnet_test_Best(epoch=16).pt to [/checkpoints/](https://github.com/Garsonjw/FaceCat/tree/12306a2988432038f82d2e24599c59bf81ece967/checkpoints/ddpm)
+Then, add the CDCN_test_Best(epoch=20).pt, CMFL_test_Best(epoch=11).pt and depthnet_test_Best(epoch=16).pt to [/checkpoints/](https://github.com/Garsonjw/FaceCat/tree/f58371c5a1912a8c7616b3b438d463e3dceeb4bd/face_anti_spoofing/checkpoints). Finally, you can run the following script for testing:
+```shell
+python test.py
+```
