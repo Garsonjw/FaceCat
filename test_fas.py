@@ -51,7 +51,7 @@ def test(args):
             text_features = torch.stack(ensemble_weights, dim=0).cuda()
 
         classifier = pixel_classifier().cuda()
-        classifier_path = "/home/kangcaixin/chenjiawei/ddpm-segmentation/test+clip_log/1/None/checkpoint/fas_model_p1_best.pth" #withclip
+        classifier_path = "clip_log/1/None/checkpoint/fas_model_p1_best.pth" #withclip
         classifier.load_state_dict({k.replace('module.', ''): v for k, v in torch.load(classifier_path)['state_dict'].items()})
         classifier.eval()
         feature_extractor = create_feature_extractor(**args)
