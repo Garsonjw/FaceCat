@@ -23,4 +23,4 @@ CUDA_VISIBLE_DEVICES="0" python -m torch.distributed.launch --nproc_per_node 1 -
 ```
 
 ### Inference
-If you already have a checkpoint, please place it at the corresponding address in the root directory
+If you already have a checkpoint(fas_model_p1_best.pth), please place it at the  in the root directory
