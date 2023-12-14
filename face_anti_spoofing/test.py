@@ -43,13 +43,13 @@ def test(args):
     with torch.no_grad():
         if args.log == 'test_CDCN_oppo':
             classifier = CDCNpp().cuda()
-            classifier_path = "/home/kangcaixin/chenjiawei/ddpm-segmentation/face_anti_spoofing/checkpoints/CDCN_test_Best(epoch=20).pt"
+            classifier_path = "/face_anti_spoofing/checkpoints/CDCN_test_Best(epoch=20).pt"
         elif args.log == 'test_CMFL_oppo':
             classifier = RGBDMH().cuda()
-            classifier_path = "/home/kangcaixin/chenjiawei/ddpm-segmentation/face_anti_spoofing/checkpoints/CMFL_test_Best(epoch=11).pt"
+            classifier_path = "/face_anti_spoofing/checkpoints/CMFL_test_Best(epoch=11).pt"
         elif args.log == 'test_depthnet_oppo':
             classifier = Depthnet().cuda()
-            classifier_path = "/home/kangcaixin/chenjiawei/ddpm-segmentation/face_anti_spoofing/checkpoints/depthnet_test_Best(epoch=16).pt"
+            classifier_path = "/face_anti_spoofing/checkpoints/depthnet_test_Best(epoch=16).pt"
 
         classifier.load_state_dict({k.replace('module.', ''): v for k, v in torch.load(classifier_path).items()})
         classifier.eval()
@@ -74,56 +74,7 @@ def test(args):
                 scores = (torch.clamp(torch.mean(map_x.squeeze(1), dim=(1, 2)), 0, 1) + score.squeeze(-1)) / 2
             for j in range(len(scores)):
                 scores_list.append('{} {}\n'.format(scores[j].item(), labels[j].item()))
-                # tnse
-            #     ls.append(labels)
-            #     feats.append(feat)
-            #
-            # # tnse
-            # feats = torch.cat(feats, dim=0).squeeze().cpu().numpy()
-            # ls = torch.cat(ls, dim=0).cpu().numpy()
-            #
-            # ##2d
-            # embed = TSNE(n_jobs=4, perplexity=5).fit(feats)  # N, yuanlaishi 5
-            # pd_embed = pd.DataFrame(embed)
-            # pd_embed.insert(loc=2, column='label', value=ls)
-            #
-            # # filter_condition = np.random.rand(len(pd_embed)) > 0.5
-            # # pd_embed = pd_embed[filter_condition]
-            #
-            # sns.set_context({'figure.figsize': [15, 10]})
-            # sns.set_style("whitegrid", {'axes.grid': False})  # 设置淡色背景
-            #
-            # # 使用蓝色和橙色，并设置点的透明度为0.6
-            # # palette_colors = {0: "salmon", 1: "darkorange", 4: "blue", 6: "lightgreen",
-            # #                8: "gold", 9: "cornflowerblue"}
-            # palette_colors = {0: "#E69F00", 1: "#56B4E9", 4: "#009E73", 6: "#F0E442",
-            #                8: "#0072B2", 9: "#D55E00"}
-            #
-            # markers = ['x', 'D', 's', '^', '*', 'o']
-            #
-            # new_labels = ["Live", "PGD", "Makeup", "Mask_Silicone",
-            #                "Mask_Trans", "Facemask"]
-            #
-            # # 根据 label 画图
-            # for idx, (label, color) in enumerate(palette_colors.items()):
-            #     subset = pd_embed[pd_embed['label'] == label]
-            #     plt.scatter(subset[0], subset[1], c=color, label=new_labels[idx], s=50, marker=markers[idx])
-            #
-            # ax = plt.gca()
-            # rect = patches.Rectangle(
-            #     (ax.get_xlim()[0], ax.get_ylim()[0]),
-            #     ax.get_xlim()[1] - ax.get_xlim()[0],
-            #     ax.get_ylim()[1] - ax.get_ylim()[0],
-            #     linewidth=1,
-            #     edgecolor='#D9D9D9',  # 修改为您喜欢的颜色
-            #     facecolor='none'
-            # )
-            # ax.add_patch(rect)
-            #
-            # plt.axis('off')
-            # # plt.legend(fontsize=25, bbox_to_anchor=(0, 1.02, 1, 0.2), loc="lower left", ncol=3)  # 如果你想展示图例
-            # plt.savefig("wo-clip.pdf", bbox_inches='tight')
-            # plt.close()
+                
     map_score_test_filename = log + '/'+'defense_score_test.txt'
 
     with open(map_score_test_filename, 'w') as file:
