@@ -5,7 +5,7 @@
 ```
 - Build Environment
 ```shell
-cd FLIP
+cd FaceCat
 conda create -n fas python=3.9
 pip install -r requirements.txt
 conda activate fas
@@ -13,6 +13,7 @@ conda activate fas
 
 ### Dataset
 SiW-Mv2: https://github.com/CHELSEA234/Multi-domain-learning-FAS?tab=readme-ov-file.
+
 Data preprocessing: run video_to_crop.py and change the address of SiW-Mv2.
 
 ### Training and Inference
