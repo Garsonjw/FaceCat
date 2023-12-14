@@ -23,4 +23,12 @@ CUDA_VISIBLE_DEVICES="0" python -m torch.distributed.launch --nproc_per_node 1 -
 ```
 
 ### Inference
-If you already have a checkpoint(fas_model_p1_best.pth), please place it at the  in the root directory
+If you already have a checkpoint(fas_model_p1_best.pth), please place it at the [/checkpoints/](https://github.com/Garsonjw/FaceCat/tree/12306a2988432038f82d2e24599c59bf81ece967/checkpoints/) in the root directory. Then, you can run the following script for testing：
+```shell
+CUDA_VISIBLE_DEVICES="0" python -m torch.distributed.launch --nproc_per_node 1 --master_port=12349 test_fas.py --attention_resolutions 32,16,8 --class_cond False --diffusion_steps 1000 --dropout 0.1 --image_size 256 --learn_sigma True --use_fp16 True --noise_schedule linear --num_channels 256 --num_head_channels 64 --num_res_blocks 2 --resblock_updown True --use_scale_shift_norm True --exp experiments/ffhq_34/ddpm.json --clip
+```
+If you want to test the effect of baseline, please execute:
+```shell
+cd face_anti_spoofing
+```
+Then, add the CDCN_test_Best(epoch=20).pt, CMFL_test_Best(epoch=11).pt and depthnet_test_Best(epoch=16).pt to [/checkpoints/](https://github.com/Garsonjw/FaceCat/tree/12306a2988432038f82d2e24599c59bf81ece967/checkpoints/ddpm)
